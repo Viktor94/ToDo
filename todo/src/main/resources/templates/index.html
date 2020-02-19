@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <title>TODO APP</title>
+</head>
+<body>
+
+<a th:href="@{/assignee}">Assignees</a>
+<a th:href="@{/save-todo}">Add TODO</a>
+<a th:href="@{/save-assignee}">Add Assignee</a>
+
+<h1>To Do's for today:</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Urgent</th>
+    <th>Done</th>
+    <th>Delete</th>
+    <th>Edit</th>
+    <th>Name</th>
+  </tr>
+
+  <tr>
+  <tr th:each="title: ${listOfToDos}">
+    <td th:text="${title.title}"></td>
+    <td th:text="${title.content}"></td>
+    <td th:text="${title.urgent}"></td>
+    <td th:text="${title.done}"></td>
+
+    <td>
+      <form th:method="post" th:action="@{|/${title.toDoId}/deleteToDo|}">
+        <input class="btn btn-info" th:type="submit" th:value="Delete">
+      </form>
+    </td>
+
+  <td>
+    <form th:method="get" th:action="@{|/${title.toDoId}/editToDo|}">
+      <input class="btn btn-info" th:type="submit" th:value="Edit">
+    </form>
+  </td>
+
+  </tr>
+</table>
+
+<h1>Assignees</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>E-mail</th>
+  </tr>
+  <tr>
+  <tr th:each="assignee: ${listOfAssignees}">
+    <td th:text="${assignee.name}"></td>
+    <td th:text="${assignee.email}"></td>
+  </tr>
+</table>
+
+</body>
+</html>

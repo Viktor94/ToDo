@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add ToDo</title>
+</head>
+<body>
+
+<a th:href="@{/assignee}">Assignees</a>
+<a th:href="@{/save-todo}">Add TODO</a>
+<a th:href="@{/save-assignee}">Add Assignee</a>
+
+<form th:action="@{/save-todo}" th:object="${toDo}" th:method="post">
+  <label for="title">Title
+    <input name="title" id="title" th:field="*{title}">
+  </label>
+  <label for="content">Content
+    <input name="content" id="content" th:field="*{content}">
+  </label>
+
+  <label for="urgent">Urgent</label>
+  <input type="radio" name="urgent" value="true" id="urgent" th:field="*{urgent}">
+
+  <label for="assignee">Content
+    <input name="content" id="assignee" th:field="*{content}">
+  </label>
+
+  <label for="done">Done</label>
+  <input type="radio" name="done" id="done" th:value="true" th:field="*{done}">
+
+  <input type="submit" value="submit">
+  <input type="reset" value="reset">
+</form>
+</body>
+</html>
